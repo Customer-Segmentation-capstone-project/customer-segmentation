@@ -1,10 +1,15 @@
-# Project Title
+# Customer Segmentation and Product Recommendation
+- Unleashing the power of personalized recommendations
 
-- Gives the name of your project
+- A Codeup capstone project created by: 
+ - Adam Harris
+ - Edward Michaud 
+ - Caroline Miller
+ - Dionne Taylor
 
 <!-- ![Project Banner](path/to/banner_image.png) -->
 
-*Project banner image credits: [Source Name](image_source_url)*
+<!-- *Project banner image credits: [Source Name](image_source_url)* -->
 
 ## Table of Contents
 
@@ -20,19 +25,31 @@
 ## Overview
 
 - Project Description Describes what your project is and why it is important
+- Briefly describe the project goal, dataset, and problem statement.
+- Project Goal Clearly states what your project sets out to do and how the information gained can be applied to the real world
 
 Using historical eCommerce data from the Brazilian online platform OLIST, we will build a profile for Brazilian customer eCommerce spending habits to recommmend Amazon products to Brazilian customers.
 
+The goal of our project is to identify customer segments that exhibit similar purchasing patterns and characteristics. This data could be used to target marketing strategies, which can reduce marketing costs while also increasing its effectiveness. This project can also be used to create a personalized customer shopping experience, which can increase customer satisfaction and lead to customer reorders.
 
-- Briefly describe the project goal, dataset, and problem statement.
-- Project Goal Clearly states what your project sets out to do and how the information gained can be applied to the real world
+We will be using publicly available data for customer purchase data from a Brazilian 
+
+
 - Initial Hypotheses Initial questions used to focus your project
+
+We have questions. Such as what are the questions?
+
 
 ## Dataset
 
 - Provide a description of the dataset, including the number of records, features, and target variable.
 - Include a link to the dataset source, if available.
 - Data dictionary
+
+The datasets we will be working with are a public dataset from the Brazilian eCommerce website OLIST, this dataset can be downloaded from: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce. 
+
+We will be combining this customer purchase data with product data scraped from Amazon products which is located at: https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset.
+
 
 ## Setup
 
