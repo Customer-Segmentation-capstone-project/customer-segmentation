@@ -46,7 +46,7 @@ We have questions. Such as what are the questions?
 - Include a link to the dataset source, if available.
 - Data dictionary
 
-The datasets we will be working with are a public dataset from the Brazilian eCommerce website OLIST, this dataset can be downloaded from: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce. 
+The datasets we will be working with are a public dataset from the Brazilian eCommerce website OLIST, this dataset can be downloaded from:  Kaggle<a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank">
 
 We will be combining this customer purchase data with product data scraped from Amazon products which is located at: https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset.
 
@@ -62,6 +62,15 @@ We will be combining this customer purchase data with product data scraped from 
 
 - Project Plan Guides the reader through the different stages of the pipeline as they relate to your project
 - Briefly describe the data preprocessing steps, including handling missing values, encoding categorical variables, scaling or normalizing numerical variables, and feature engineering.
+
+- Planning - We will be using Trello for planning out the tasks for each stage of the process.
+- Acquisition - 
+- Preparation - 
+- Exploration - 
+- Modeling - 
+- Delivery - 
+
+
 
 ## Model Selection and Training
 
