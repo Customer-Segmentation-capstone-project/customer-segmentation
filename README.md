@@ -48,10 +48,12 @@ We have questions. Such as what are the questions?
 
 The datasets we will be working with are a public dataset from the Brazilian eCommerce website OLIST, this dataset can be downloaded from: [Kaggle - Brazilian eCommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-We will be combining this customer purchase data with product data scraped from Amazon products which is located at: Kaggle - Amazon products dataset](https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset).
+We will be combining this customer purchase data with product data scraped from Amazon products which is located at: [Kaggle - Amazon products dataset](https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset).
 
 
 ## Setup
+
+To download the dataset, you will need an account for [Kaggle.com](https://www.kaggle.com).
 
 - Gives instructions for reproducing your work. i.e. Running your notebook on someone else's computer.
 - List the required Python libraries and their versions.
