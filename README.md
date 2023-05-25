@@ -20,6 +20,10 @@
 ## Overview
 
 - Project Description Describes what your project is and why it is important
+
+Using historical eCommerce data from the Brazilian online platform OLIST, we will build a profile for Brazilian customer eCommerce spending habits to recommmend Amazon products to Brazilian customers.
+
+
 - Briefly describe the project goal, dataset, and problem statement.
 - Project Goal Clearly states what your project sets out to do and how the information gained can be applied to the real world
 - Initial Hypotheses Initial questions used to focus your project
