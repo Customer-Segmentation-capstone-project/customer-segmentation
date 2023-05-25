@@ -1,7 +1,7 @@
 # Customer Segmentation and Product Recommendation
-- Unleashing the power of personalized recommendations
+Unleashing the power of personalized recommendations
 
-- A Codeup capstone project created by: 
+A Codeup capstone project created by: 
  - Adam Harris
  - Edward Michaud 
  - Caroline Miller
@@ -32,7 +32,7 @@ Using historical eCommerce data from the Brazilian online platform OLIST, we wil
 
 The goal of our project is to identify customer segments that exhibit similar purchasing patterns and characteristics. This data could be used to target marketing strategies, which can reduce marketing costs while also increasing its effectiveness. This project can also be used to create a personalized customer shopping experience, which can increase customer satisfaction and lead to customer reorders.
 
-We will be using publicly available data for customer purchase data from a Brazilian 
+We will be using publicly available data for customer purchase data from a Brazilian eCommerce marketplace along with product review sales and review data scraped from Amazon.
 
 
 - Initial Hypotheses Initial questions used to focus your project
@@ -46,9 +46,9 @@ We have questions. Such as what are the questions?
 - Include a link to the dataset source, if available.
 - Data dictionary
 
-The datasets we will be working with are a public dataset from the Brazilian eCommerce website OLIST, this dataset can be downloaded from:  Kaggle<a href="https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce" target="_blank">
+The datasets we will be working with are a public dataset from the Brazilian eCommerce website OLIST, this dataset can be downloaded from: [Kaggle - Brazilian eCommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-We will be combining this customer purchase data with product data scraped from Amazon products which is located at: https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset.
+We will be combining this customer purchase data with product data scraped from Amazon products which is located at: Kaggle - Amazon products dataset](https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset).
 
 
 ## Setup
@@ -63,13 +63,7 @@ We will be combining this customer purchase data with product data scraped from 
 - Project Plan Guides the reader through the different stages of the pipeline as they relate to your project
 - Briefly describe the data preprocessing steps, including handling missing values, encoding categorical variables, scaling or normalizing numerical variables, and feature engineering.
 
-- Planning - We will be using Trello for planning out the tasks for each stage of the process.
-- Acquisition - 
-- Preparation - 
-- Exploration - 
-- Modeling - 
-- Delivery - 
-
+The data will be downloaded from Kaggle and stored on our local devices.
 
 
 ## Model Selection and Training
