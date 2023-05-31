@@ -48,6 +48,8 @@ def prepare_data(df):
     df.unit_price = round(df.unit_price, 2)
     df.cost = round(df.cost, 2)
     df.revenue = round(df.revenue, 2)
+    # set date to datetime dtype
+    df.date = pd.to_datetime(df.date)
     # create new column for total price of sale
     df['total_price'] = df.quantity * df.unit_cost
     # return the cleaned dataset
