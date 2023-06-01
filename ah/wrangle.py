@@ -62,6 +62,10 @@ def prepare_data(df):
     df['total_price'] = df.quantity * df.unit_price
     # one-hot encode 'sub-category' column
     df = one_hot_encode_columns(df, 'sub_category')
+    # one-hot encode 'gender' column
+    df = one_hot_encode_columns(df, 'customer_gender')
+    # one-hot encode 'country' column
+    df = one_hot_encode_columns(df, 'country')
     # return the cleaned dataset
     return df
 
