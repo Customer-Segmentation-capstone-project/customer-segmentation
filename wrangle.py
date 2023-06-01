@@ -86,3 +86,5 @@ def wrangle_data():
     train, validate, test = split_data(df)
     # return the clean df, train, validate and test
     return df, train, validate, test
+    # Display the df DataFrame
+    df
