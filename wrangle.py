@@ -33,10 +33,6 @@ def acquire_data():
     # return the acquired data
     return df
 
-<<<<<<< HEAD
-=======
-# =================================================================================
-
 def encode_cat_variables(df, encode_cols):
     '''
     This will encode the passed categorical columns into numerical values
@@ -65,9 +61,6 @@ def one_hot_encode_columns(df, cols):
     # return the df with the one-hot encoded columns
     return df
 
-# =================================================================================
-
->>>>>>> b7939abd27fba387868b1d4a4fd4b3e2d64b0aaa
 def prepare_data(df):
     '''
     this will clean the column names and change the data types to the proper dtypes.
@@ -96,8 +89,6 @@ def prepare_data(df):
     
     # create new column for total price of sale
     df['total_price'] = df.quantity * df.unit_price
-<<<<<<< HEAD
-=======
     
     # one-hot encode 'sub-category' column
     df = one_hot_encode_columns(df, 'sub_category')
@@ -110,7 +101,6 @@ def prepare_data(df):
     encode_cols = ['product_category']
     df = encode_cat_variables(df, encode_cols)
     
->>>>>>> b7939abd27fba387868b1d4a4fd4b3e2d64b0aaa
     # return the cleaned dataset
     return df
 
@@ -149,10 +139,6 @@ def wrangle_data():
     train, validate, test = split_data(df)
     # return the clean df, train, validate and test
     return df, train, validate, test
-<<<<<<< HEAD
-   
-    
-=======
 
 # =================================================================================
 
@@ -197,4 +183,4 @@ def scale_data(train,
     # otherwise return the scaled data
     else:
         return train_scaled, validate_scaled, test_scaled
->>>>>>> b7939abd27fba387868b1d4a4fd4b3e2d64b0aaa
+
