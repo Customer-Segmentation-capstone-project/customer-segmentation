@@ -51,7 +51,7 @@ def prepare_data(df):
     # set date to datetime dtype
     df.date = pd.to_datetime(df.date)
     # create new column for total price of sale
-    df['total_price'] = df.quantity * df.unit_cost
+    df['total_price'] = df.quantity * df.unit_price
     # return the cleaned dataset
     return df
 
