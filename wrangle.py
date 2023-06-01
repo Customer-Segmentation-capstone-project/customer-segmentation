@@ -29,14 +29,6 @@ def acquire_data():
     # return the acquired data
     return df
 
-def one_hot_encode_columns(df, cols):
-    # one-hot encode the outcome variable since that is our target
-    df = pd.concat([df, 
-                    pd.get_dummies(df[[cols]], 
-                     dummy_na=False, 
-                     drop_first=[True, True])], axis=1)
-    return df
-
 def prepare_data(df):
     '''
     this will clean the column names and change the data types to the proper dtypes.
@@ -60,12 +52,6 @@ def prepare_data(df):
     df.date = pd.to_datetime(df.date)
     # create new column for total price of sale
     df['total_price'] = df.quantity * df.unit_price
-    # one-hot encode 'sub-category' column
-    df = one_hot_encode_columns(df, 'sub_category')
-    # one-hot encode 'gender' column
-    df = one_hot_encode_columns(df, 'customer_gender')
-    # one-hot encode 'country' column
-    df = one_hot_encode_columns(df, 'country')
     # return the cleaned dataset
     return df
 
@@ -100,5 +86,5 @@ def wrangle_data():
     train, validate, test = split_data(df)
     # return the clean df, train, validate and test
     return df, train, validate, test
-    # Display the df DataFrame
-    df
+   
+    
