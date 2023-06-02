@@ -231,6 +231,12 @@ def k_means_clustering(df):
     # Print silhouette_score for clusters     
     s_score = silhouette_score(X, labels)
     print(f"Silhouette Score: {s_score:.3f}")
+
+    # Adding target column containing the labels
+    df['clusters'] = labels
+
+    # returns df with target column
+    return df
     
 # Execute with the following statement    
 # k_means_clustering(df)
