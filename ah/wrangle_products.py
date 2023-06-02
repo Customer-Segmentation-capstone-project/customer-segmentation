@@ -202,3 +202,25 @@ def wrangle_products():
     cleaned = prepare_amazon(df)
     # return the prepared data
     return cleaned
+
+# ===================================================================================
+
+def get_cat_list(cat_list, extra_words=None, exclude_words=None):
+    cats = []
+    # cycle through all the product cats
+    for cat in cat_list:
+        # clean the product cat
+        basic_cleaned = basic_clean(cat)
+        # tokenize the words in the cat
+        tokenized = tokenize(basic_cleaned)
+        # remove the stopwords from the product cat
+        cleaned = remove_stopwords(tokenized, 
+                                   extra_words=extra_words, 
+                                   exclude_words=exclude_words)
+        # get the lemmatized words from the product cat
+        lemmatized = lemmatize(cleaned)
+        # add the lemmatized cat to the list of cats
+        cats.append(lemmatized)
+    # return a list of categories that are cleaned and lemmatized 
+    # whiich we can match to our product names
+    return cats
