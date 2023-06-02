@@ -4,6 +4,11 @@ import os
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import LabelEncoder
 
 # =================================================================================
 
@@ -88,7 +93,7 @@ def prepare_data(df):
     df.date = pd.to_datetime(df.date)
     
     # create new column for total price of sale
-    df['total_price'] = df.quantity * df.unit_price
+    df['profit'] = df.revenue - df.cost
     
     # one-hot encode 'sub-category' column
     df = one_hot_encode_columns(df, 'sub_category')
@@ -184,59 +189,100 @@ def scale_data(train,
     else:
         return train_scaled, validate_scaled, test_scaled
 
-from sklearn.cluster import KMeans
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import silhouette_score
-from sklearn.preprocessing import LabelEncoder
+# def k_means_clustering(df):
+#     # Drop date column from dataset
+#     df.drop('date', axis=1, inplace=True)
 
-def k_means_clustering(df):
-    # Drop date column from dataset
-    df.drop('date', axis=1, inplace=True)
+#     # Encode categorical columns
+#     le = LabelEncoder()
+#     df['customer_gender'] = le.fit_transform(df['customer_gender'])
+#     df['country'] = le.fit_transform(df['country'])
+#     df['state'] = le.fit_transform(df['state'])
+#     df['product_category'] = le.fit_transform(df['product_category'])
+#     df['sub_category'] = le.fit_transform(df['sub_category'])
+#     df['month'] = le.fit_transform(df['month'])
 
-    # Encode categorical columns
-    le = LabelEncoder()
-    df['customer_gender'] = le.fit_transform(df['customer_gender'])
-    df['country'] = le.fit_transform(df['country'])
-    df['state'] = le.fit_transform(df['state'])
-    df['product_category'] = le.fit_transform(df['product_category'])
-    df['sub_category'] = le.fit_transform(df['sub_category'])
-    df['month'] = le.fit_transform(df['month'])
+#     # Standardizes data
+#     df = (df - df.mean()) / df.std()
 
-    # Standardizes data
-    df = (df - df.mean()) / df.std()
+#     # Feature Selection
+#     data = df[['customer_age','sub_category', 'cost']]  # Select relevant columns
 
-    # Feature Selection
-    data = df[['customer_age','sub_category', 'cost']]  # Select relevant columns
+#     # Standardization
+#     scaler = StandardScaler()
+#     X = scaler.fit_transform(data)
+
+#     # Clustering Algorithm (K-means)
+#     k = 5  # Number of clusters
+#     kmeans = KMeans(n_clusters=k)
+#     labels = kmeans.fit_predict(X)
+
+#     # Cluster Analysis
+#     # Analyze the resulting clusters by examining their characteristics
+#     cluster_centers = kmeans.cluster_centers_
+
+#     # Print the mean values of the selected features for each cluster
+#     for cluster in range(k):
+#         cluster_data = data[labels == cluster]
+#         cluster_mean = cluster_data.mean()
+#         print(f"Cluster {cluster + 1} Mean:")
+#         print(cluster_mean)
+#         print()
+#     # Print silhouette_score for clusters     
+#     s_score = silhouette_score(X, labels)
+#     print(f"Silhouette Score: {s_score:.3f}")
+
+#     # Adding target column containing the labels
+#     df['clusters'] = labels
+
+#     # returns df with target column
+#     return df
+    
+# # Execute with the following statement    
+# # k_means_clustering(df)
+
+def k_means_clustering(k):
+    
+    df, train, validate, test = wrangle_data()
+
+
+    modeling_feats = ['customer_age','sub_category_Bike Stands',
+       'sub_category_Bottles and Cages', 'sub_category_Caps',
+       'sub_category_Cleaners', 'sub_category_Fenders', 'sub_category_Gloves',
+       'sub_category_Helmets', 'sub_category_Hydration Packs',
+       'sub_category_Jerseys', 'sub_category_Mountain Bikes',
+       'sub_category_Road Bikes', 'sub_category_Shorts', 'sub_category_Socks',
+       'sub_category_Tires and Tubes', 'sub_category_Touring Bikes',
+       'sub_category_Vests', 'revenue'] 
+
+    df_clustering = df[modeling_feats]
 
     # Standardization
-    scaler = StandardScaler()
-    X = scaler.fit_transform(data)
+    columnTransformer = ColumnTransformer([('scaler', StandardScaler(), 
+                                            ['customer_age', 'revenue'])], 
+                                          remainder="passthrough")
+    X = columnTransformer.fit_transform(df_clustering)
 
     # Clustering Algorithm (K-means)
-    k = 5  # Number of clusters
-    kmeans = KMeans(n_clusters=k)
+    kmeans = KMeans(n_clusters=k, random_state=123)
     labels = kmeans.fit_predict(X)
-
+    
     # Cluster Analysis
     # Analyze the resulting clusters by examining their characteristics
     cluster_centers = kmeans.cluster_centers_
 
     # Print the mean values of the selected features for each cluster
     for cluster in range(k):
-        cluster_data = data[labels == cluster]
+        cluster_data = df_clustering[labels == cluster]
         cluster_mean = cluster_data.mean()
         print(f"Cluster {cluster + 1} Mean:")
         print(cluster_mean)
         print()
     # Print silhouette_score for clusters     
-    s_score = silhouette_score(X, labels)
+    s_score = silhouette_score(X,labels)
     print(f"Silhouette Score: {s_score:.3f}")
 
-    # Adding target column containing the labels
     df['clusters'] = labels
-
+    
     # returns df with target column
     return df
-    
-# Execute with the following statement    
-# k_means_clustering(df)
