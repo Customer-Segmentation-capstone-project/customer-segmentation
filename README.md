@@ -1,5 +1,5 @@
 # Customer Segmentation and Product Recommendation
-Unleashing the power of personalized recommendations
+“ShopSense” - Personalized Product Recommendations for Biking Enthusiast
 
 A Codeup capstone project created by: 
  - Adam Harris
@@ -24,20 +24,23 @@ A Codeup capstone project created by:
 
 ## Overview
 
-- Project Description Describes what your project is and why it is important
-- Briefly describe the project goal, dataset, and problem statement.
-- Project Goal Clearly states what your project sets out to do and how the information gained can be applied to the real world
+- ShopSense is an exciting data-driven project aimed at enhancing the shopping experience for customers of bike shops by providing personalized product recommendations. As a team of data scientists, our goal is to improve customer satisfaction and increase sales by leveraging historical purchasing data to deliver tailored recommendations to each individual customer.
 
-Using historical eCommerce data from the Brazilian online platform OLIST, we will build a profile for Brazilian customer eCommerce spending habits to recommmend Amazon products to Brazilian customers.
+Through advanced machine learning techniques and recommendation algorithms, we will analyze the purchasing history of bike shop customers and identify patterns and preferences. By understanding each customer's unique preferences and needs, we can offer personalized recommendations that align with their interests, resulting in a more enjoyable and efficient shopping experience.
 
-The goal of our project is to identify customer segments that exhibit similar purchasing patterns and characteristics. This data could be used to target marketing strategies, which can reduce marketing costs while also increasing its effectiveness. This project can also be used to create a personalized customer shopping experience, which can increase customer satisfaction and lead to customer reorders.
-
-We will be using publicly available data for customer purchase data from a Brazilian eCommerce marketplace along with product review sales and review data scraped from Amazon.
+Our approach involves applying state-of-the-art recommendation systems to the vast product catalog available on Amazon.com. We will develop a recommendation engine that utilizes customer purchase history, demographic information, and browsing behavior to generate accurate and relevant product suggestions. By harnessing the power of data, we aim to provide highly targeted recommendations that align with each customer's specific interests and needs.
 
 
-- Initial Hypotheses Initial questions used to focus your project
+- Project Goals:
+1. Improve customer satisfaction: By providing personalized recommendations, we aim to enhance the shopping experience and help customers discover products that resonate with their interests and preferences.
+2. Increase sales: Tailored recommendations have the potential to boost customer engagement and drive incremental sales by showcasing relevant products to customers who are more likely to make a purchase.
+3. Foster customer loyalty: By demonstrating a deep understanding of each customer's preferences, we aim to build strong customer relationships and foster loyalty within the bike shop community.
 
-We have questions. Such as what are the questions?
+
+- Initial Hypotheses Initial Questions:
+
+1. Can tailored recommendations improve the average order value by suggesting complementary products?
+2. Does providing personalized product recommendations based on purchasing history lead to higher customer engagement?
 
 
 ## Dataset
