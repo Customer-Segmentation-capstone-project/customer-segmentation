@@ -24,20 +24,19 @@ A Codeup capstone project created by:
 
 ## Overview
 
-- ShopSense is an exciting data-driven project aimed at enhancing the shopping experience for customers of bike shops by providing personalized product recommendations. As a team of data scientists, our goal is to improve customer satisfaction and increase sales by leveraging historical purchasing data to deliver tailored recommendations to each individual customer.
+ShopSense is an exciting data-driven project aimed at enhancing the shopping experience for customers of bike shops by providing personalized product recommendations. As a team of data scientists, our goal is to improve customer satisfaction and increase sales by leveraging historical purchasing data to deliver tailored recommendations to each individual customer.
 
 Through advanced machine learning techniques and recommendation algorithms, we will analyze the purchasing history of bike shop customers and identify patterns and preferences. By understanding each customer's unique preferences and needs, we can offer personalized recommendations that align with their interests, resulting in a more enjoyable and efficient shopping experience.
 
-Our approach involves applying state-of-the-art recommendation systems to the vast product catalog available on Amazon.com. We will develop a recommendation engine that utilizes customer purchase history, demographic information, and browsing behavior to generate accurate and relevant product suggestions. By harnessing the power of data, we aim to provide highly targeted recommendations that align with each customer's specific interests and needs.
+Our approach involves applying recommendation systems to the vast product catalog available on Amazon.com. We will develop a recommendation engine that utilizes customer purchase history, demographic information, and browsing behavior to generate accurate and relevant product suggestions. By harnessing the power of data, we aim to provide highly targeted recommendations that align with each customer's specific interests and needs.
 
+## Project Goals
 
-- Project Goals:
 1. Improve customer satisfaction: By providing personalized recommendations, we aim to enhance the shopping experience and help customers discover products that resonate with their interests and preferences.
 2. Increase sales: Tailored recommendations have the potential to boost customer engagement and drive incremental sales by showcasing relevant products to customers who are more likely to make a purchase.
 3. Foster customer loyalty: By demonstrating a deep understanding of each customer's preferences, we aim to build strong customer relationships and foster loyalty within the bike shop community.
 
-
-- Initial Hypotheses Initial Questions:
+## Initial Hypotheses Questions
 
 1. Can tailored recommendations improve the average order value by suggesting complementary products?
 2. Does providing personalized product recommendations based on purchasing history lead to higher customer engagement?
