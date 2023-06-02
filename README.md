@@ -1,5 +1,4 @@
-# Customer Segmentation and Product Recommendation
-“ShopSense” - Personalized Product Recommendations for Biking Enthusiast
+# ShopSense: Revolutionizing the Shopping Experience for Bicycle Enthusiasts
 
 A Codeup capstone project created by: 
  - Adam Harris
