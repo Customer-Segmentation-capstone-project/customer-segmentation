@@ -6,6 +6,9 @@ from nltk.tokenize.toktok import ToktokTokenizer
 from nltk.corpus import stopwords
 import unicodedata
 
+import warnings
+warnings.filterwarnings('ignore')
+
 # ==========================================================================
 
 def acquire_amazon():
@@ -104,7 +107,7 @@ def remove_stopwords(string, extra_words=None, exclude_words=None):
 
 # ===================================================================================
 
-def prepare_amazon(df, extra_words=None, exclude_words=None):
+def clean_names(df, extra_words=None, exclude_words=None):
     '''
     This will clean/normalize, tokenize and lemmatize the product names from amazon in 
     preparation of using nlp on it.
@@ -130,3 +133,72 @@ def prepare_amazon(df, extra_words=None, exclude_words=None):
     df['name_preped'] = names
     # return the df
     return df
+
+# ===================================================================================
+
+def prepare_amazon(df, extra_words=None, exclude_words=None):
+    '''
+    This will clean/normalize/tokenize/lemmatize the name column of the amazon products,
+    it will also replace some nonsense values in the ratings columns with 0s and 
+    remove Indian rupee symbol. It will then convert the correct dtypes,
+    and convert the prices from Indian rupee into US dollars. Then it will
+    create new columns for the discount_amount and rating_prod
+    '''
+    # clean/tokenize/lemmatize the product names so we can use regex on them later
+    cleaned = clean_names(df, extra_words=None, exclude_words=None)
+    
+    # change nonsense rating values into 0s and convert dtypes
+    cleaned.ratings = cleaned.ratings.str.strip().\
+        str.replace(' ', '', regex=False).\
+        str.replace(',','', regex=False).\
+        str.replace('Get', '0', regex=False).\
+        fillna('0').astype(float)
+    cleaned.no_of_ratings = cleaned.no_of_ratings.str.strip().\
+        str.replace(' ', '', regex=False).\
+        str.replace(',','', regex=False).\
+        str.replace('FREEDeliverybyAmazon', '0', regex=False).\
+        str.replace('Only1leftinstock.', '0', regex=False).\
+        str.replace('Only2leftinstock.', '0', regex=False).\
+        fillna('0').astype(int)
+    
+    # remove rows without actual prices since they are probably not available
+    cleaned = cleaned[cleaned.actual_price.isna() == False]
+    # clean the prices and convert to float dtype
+    cleaned.discount_price = cleaned.discount_price.str.strip().\
+        str.replace('₹','', regex=False).\
+        str.replace(',','', regex=False).astype(float)
+    cleaned.actual_price = cleaned.actual_price.str.strip().\
+        str.replace('₹','', regex=False).\
+        str.replace(',','', regex=False).astype(float)
+    # if there is no discount_price we will assume the actual_price
+    cleaned.discount_price = cleaned.discount_price.fillna(cleaned.actual_price)
+    
+    # convert the prices from Indian rupees into US dollars (1 rupee = 0.012 dollars)
+    cleaned.actual_price = round(cleaned.actual_price * 0.012, 2)
+    cleaned.discount_price = round(cleaned.discount_price * 0.012, 2)
+    
+    # lets create a new column with the amount of discount
+    cleaned['discount_amount'] = cleaned.actual_price - cleaned.discount_price
+    # create a new column that is the product of avg ratings and no_of_ratings
+    # so that we can get a rankings of all the products
+    cleaned['prod_rating'] = cleaned.ratings * cleaned.no_of_ratings
+    
+    # rename columns to avoid confustion
+    cleaned = cleaned.rename(columns={'main_category':'amazon_main_cat',
+                                      'sub_category': 'amazon_sub_cat'})
+    
+    # return the cleaned dataframe
+    return cleaned
+
+# ===================================================================================
+
+def wrangle_products():
+    '''
+    This will perform the acquisitioin and preparing of the amazon product info
+    '''
+    # acquire amazon product data
+    df = acquire_amazon()
+    # prepare the data
+    cleaned = prepare_amazon(df)
+    # return the prepared data
+    return cleaned
