@@ -184,3 +184,53 @@ def scale_data(train,
     else:
         return train_scaled, validate_scaled, test_scaled
 
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import LabelEncoder
+
+def k_means_clustering(df):
+    # Drop date column from dataset
+    df.drop('date', axis=1, inplace=True)
+
+    # Encode categorical columns
+    le = LabelEncoder()
+    df['customer_gender'] = le.fit_transform(df['customer_gender'])
+    df['country'] = le.fit_transform(df['country'])
+    df['state'] = le.fit_transform(df['state'])
+    df['product_category'] = le.fit_transform(df['product_category'])
+    df['sub_category'] = le.fit_transform(df['sub_category'])
+    df['month'] = le.fit_transform(df['month'])
+
+    # Standardizes data
+    df = (df - df.mean()) / df.std()
+
+    # Feature Selection
+    data = df[['customer_age','sub_category', 'cost']]  # Select relevant columns
+
+    # Standardization
+    scaler = StandardScaler()
+    X = scaler.fit_transform(data)
+
+    # Clustering Algorithm (K-means)
+    k = 5  # Number of clusters
+    kmeans = KMeans(n_clusters=k)
+    labels = kmeans.fit_predict(X)
+
+    # Cluster Analysis
+    # Analyze the resulting clusters by examining their characteristics
+    cluster_centers = kmeans.cluster_centers_
+
+    # Print the mean values of the selected features for each cluster
+    for cluster in range(k):
+        cluster_data = data[labels == cluster]
+        cluster_mean = cluster_data.mean()
+        print(f"Cluster {cluster + 1} Mean:")
+        print(cluster_mean)
+        print()
+    # Print silhouette_score for clusters     
+    s_score = silhouette_score(X, labels)
+    print(f"Silhouette Score: {s_score:.3f}")
+    
+# Execute with the following statement    
+# k_means_clustering(df)
