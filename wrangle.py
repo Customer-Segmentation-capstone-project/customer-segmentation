@@ -111,27 +111,6 @@ def prepare_data(df):
 
 # =================================================================================
 
-def split_data(df, random_seed=4233):
-    '''
-    split_data will take in a DataFrame and split it into train, validate and test sets
-    random_seed is also asignable (default = 4233 for no reason).
-    It will return the data split up for ML models. 
-    The return values are: train, validate, test
-    '''
-    # split our df into train_val and test:
-    train_val, test = train_test_split(df,
-                                       train_size=0.8,
-                                       random_state=random_seed)
-    
-    # split our train_val into train and validate:
-    train, validate = train_test_split(train_val,
-                                       train_size=0.7,
-                                       random_state=random_seed)
-    # return the split DataFrames
-    return train, validate, test
-
-# =================================================================================
-
 def wrangle_data():
     '''
     This will perform the acquire, preparation and split functions with one command
@@ -286,3 +265,53 @@ def k_means_clustering(k):
     
     # returns df with target column
     return df
+    
+def split_data(df, random_seed=4233):
+    '''
+    split_data will take in a DataFrame and split it into train, validate and test sets
+    random_seed is also asignable (default = 4233 for no reason).
+    It will return the data split up for ML models. 
+    The return values are: train, validate, test
+    '''
+    # split our df into train_val and test:
+    train_val, test = train_test_split(df, 
+                                   train_size=0.8,
+                                   random_state=random_seed
+                                   )
+    
+    # split our train_val into train and validate:
+    train, validate = train_test_split(train_val,
+                                       train_size=0.7,
+                                       random_state=random_seed)
+                                    
+    # return the split DataFrames
+    return train, validate, test
+
+# =================================================================================
+
+def clean_split_df(df):
+
+    df = df.drop(columns={'sub_category_Bike Stands',
+       'sub_category_Bottles and Cages', 'sub_category_Caps',
+       'sub_category_Cleaners', 'sub_category_Fenders', 'sub_category_Gloves',
+       'sub_category_Helmets', 'sub_category_Hydration Packs',
+       'sub_category_Jerseys', 'sub_category_Mountain Bikes',
+       'sub_category_Road Bikes', 'sub_category_Shorts', 'sub_category_Socks',
+       'sub_category_Tires and Tubes', 'sub_category_Touring Bikes',
+       'sub_category_Vests', 'customer_gender_M', 'country_Germany',
+       'country_United Kingdom', 'country_United States',
+       'product_category_encoded'})
+
+        # split our df into train_val and test:
+    train_val, test = train_test_split(df, 
+                                   train_size=0.8,
+                                   random_state=123,
+                                   stratify=df['clusters'])
+    
+    # split our train_val into train and validate:
+    train, validate = train_test_split(train_val,
+                                       train_size=0.7,
+                                       random_state=123,
+                                       stratify=train_val['clusters'])
+
+    return train, validate, test
