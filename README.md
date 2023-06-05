@@ -1,4 +1,4 @@
-# ShopSense: Revolutionizing the Shopping Experience for Bicycle Enthusiasts
+# SegmentSavvy: Revolutionizing the Shopping Experience for Bicycle Enthusiasts
 
 A Codeup capstone project created by: 
  - Adam Harris
