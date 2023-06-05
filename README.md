@@ -43,19 +43,23 @@ Online consumers use Amazon to buy affordable, convenient products of a wide var
 
 ## Initial Hypotheses Questions
 
-1. Can tailored recommendations improve the average order value by suggesting complementary products?
-2. Does providing personalized product recommendations based on purchasing history lead to higher customer engagement?
+1. What are the distinct characteristics of the four clusters of customers? What is the most influential driver(s) of segmenting customers?
+2. On average, is the reveneue of each of the customer segemnts different from one another? Are any of segmented customers spending more? Are there any distinguishable demographic information of customer segments who spend more? What types of products are they buying?
+3. Does the average age of the customers among the clusters differ?
+4. Are there any sub-categories of products that customers of specific genders are purchasing? What are they?
+5. Between road, mountain, and touring bikes, are customers in specific geographical areas buying more of these types of bikes? Does the age differ between the customers who purchase these types of bikes? Do people of different gender purchase one type of bike more than the other?
+6. Proportional to a nation's population, does one country purchase more items than the others? What are they buying if so, and how much are they spending?
 
 
 ## Dataset
 
-- DataFrame with 36 columns capturing various aspects of sales data. The columns contain information about sales attributes, customer details, product details, costs, revenues, profits, and encoded categorical variables. The DataFrame represents a structured and organized form of the sales dataset, facilitating data analysis and manipulation taskEntries: The DataFrame contains a total of 34866 entries, meaning there are 34866 rows in the DataFrame.
+- The project uses two different datasets. 1) Bicycle Shop Sales data and 2) Amazon product list of cycling gear. 
 
-
-## Link to datasource: https://data.world/vineet/salesdata
+## Link to 1:  https://data.world/vineet/salesdata
+## Link to 2:  https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset (you will need a Kaggle account to access)
 
 ## Data dictionary
-
+   Dataset 1: Bicycle Sales Data
 | **Object Returned** | **Description** |
 |:-------------------|:--------------------------------|
 | 1. date | date of transaction (datetime) |
