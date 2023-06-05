@@ -43,13 +43,33 @@ Our approach involves applying recommendation systems to the vast product catalo
 
 ## Dataset
 
-- Provide a description of the dataset, including the number of records, features, and target variable.
-- Include a link to the dataset source, if available.
-- Data dictionary
+- DataFrame with 36 columns capturing various aspects of sales data. The columns contain information about sales attributes, customer details, product details, costs, revenues, profits, and encoded categorical variables. The DataFrame represents a structured and organized form of the sales dataset, facilitating data analysis and manipulation taskEntries: The DataFrame contains a total of 34866 entries, meaning there are 34866 rows in the DataFrame.
 
-The datasets we will be working with are a public dataset from the Brazilian eCommerce website OLIST, this dataset can be downloaded from: [Kaggle - Brazilian eCommerce](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
-We will be combining this customer purchase data with product data scraped from Amazon products which is located at: [Kaggle - Amazon products dataset](https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset).
+## Link to datasource: https://data.world/vineet/salesdata
+
+## Data dictionary
+
+Column Name	Description
+Year	The year in which the sales were recorded.
+Month	The month in which the sales were recorded.
+Customer ID	A unique identifier for each customer.
+Customer Name	The name of the customer.
+Product ID	A unique identifier for each product.
+Product Name	The name of the product.
+Quantity	The quantity of the product sold.
+Revenue	The revenue generated from the sales of the product.
+Cost	The cost associated with the product.
+Profit	The profit obtained from the sales of the product.
+Country	The country where the sales occurred.
+State	The state where the sales occurred.
+City	The city where the sales occurred.
+Region	The region where the sales occurred.
+Order Date	The date when the order was placed.
+Ship Date	The date when the product was shipped.
+Ship Mode	The mode of shipment for the product.
+Segment	The market segment to which the customer belongs.
+Ship Priority	The priority of the shipment.
 
 
 ## Setup
