@@ -55,8 +55,8 @@ Online consumers use Amazon to buy affordable, convenient products of a wide var
 
 - The project uses two different datasets. 1) Bicycle Shop Sales data and 2) Amazon product list of cycling gear. 
 
-## Link to 1:  https://data.world/vineet/salesdata
-## Link to 2:  https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset (you will need a Kaggle account to access)
+Link to 1:  https://data.world/vineet/salesdata
+Link to 2:  https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset (you will need a Kaggle account to access)
 
 ## Data dictionary
    Dataset 1: Bicycle Sales Data
@@ -77,6 +77,18 @@ Online consumers use Amazon to buy affordable, convenient products of a wide var
 | 13. cost | total prie the store paid for the quantity of item purchased in transaction(float)   |
 | 14. revenue | total revenue accrued for the quantity  of items purchaseed in transaction (Float)  |
 
+   Dataset 2: Amazon Cycling Product Data
+| **Object Returned** | **Description** |
+|:-------------------|:--------------------------------|
+| 1. | name	The name of the product |
+| 2. | main_category	The main category of the product belong |
+| 3. | sub_category	The main category of the product belong |
+| 4. | image	The image of the product look like |
+| 5. | link	The amazon website reference link of the product |
+| 6. | ratings	The ratings given by amazon customers of the product |
+| 7. | no of ratings	The number of ratings given to this product in amazon shopping |
+| 8. | discount_price	The discount prices of the product |
+| 9. | actual_price	The actual MRP of the product |
 
 ## Setup
 
