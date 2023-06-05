@@ -56,26 +56,22 @@ Online consumers use Amazon to buy affordable, convenient products of a wide var
 
 ## Data dictionary
 
-Column Name	Description
-Year	The year in which the sales were recorded.
-Month	The month in which the sales were recorded.
-Customer ID	A unique identifier for each customer.
-Customer Name	The name of the customer.
-Product ID	A unique identifier for each product.
-Product Name	The name of the product.
-Quantity	The quantity of the product sold.
-Revenue	The revenue generated from the sales of the product.
-Cost	The cost associated with the product.
-Profit	The profit obtained from the sales of the product.
-Country	The country where the sales occurred.
-State	The state where the sales occurred.
-City	The city where the sales occurred.
-Region	The region where the sales occurred.
-Order Date	The date when the order was placed.
-Ship Date	The date when the product was shipped.
-Ship Mode	The mode of shipment for the product.
-Segment	The market segment to which the customer belongs.
-Ship Priority	The priority of the shipment.
+| **Object Returned** | **Description** |
+|:-------------------|:--------------------------------|
+| 1. date | date of transaction (datetime) |
+| 2. year | year of transaction (object) |
+| 3. month | month pf transaction (integer) |
+| 4. customer_age |  age of the customer at the time of purchase (Float) |
+| 5. customer_gender | gender of customer (female/male) |
+| 6. country | country of origin of customer (object) |
+| 7. state | state or province of customer (Float)  |
+| 8. product_category | broad category of item purchased (object)   |
+| 9. sub_category | descriptive category of item purchased(object)   |
+| 10. quantity | the number of products purchased for the transaction (Float)  |
+| 11. unit_cost | price which the store paid per item purhased in transaction (Float)  |
+| 12. unit_price | price which the customer paid per item purchased in transaction (float)   |
+| 13. cost | total prie the store paid for the quantity of item purchased in transaction(float)   |
+| 14. revenue | total revenue accrued for the quantity  of items purchaseed in transaction (Float)  |
 
 
 ## Setup
