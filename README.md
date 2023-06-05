@@ -133,12 +133,46 @@ To download the dataset, you will need an account for [Kaggle.com](https://www.k
 
 The data will be downloaded from Kaggle and stored on our local devices.
 
+## Feature Engineering
 
-## Model Selection and Training
+- In our project, we implemented a clustering operation on our dataset. The purpose of this clustering is to discover inherent groupings in the data. This operation involves several steps, each of which contributes to the transformation and processing of our data.
 
-- List the machine learning models considered for the project.
-- Explain the model selection process and criteria.
-- Describe the model training process, including hyperparameter tuning and cross-validation, if applicable.
+### Data Standardization
+
+- Before running the clustering algorithm, the dataset must be scaled to level the playing field for the dataset. Most importanlty, when dealing with features that are measured in different units, the data muyst be scaled. If one feature's range is significantly larger than the others, it could dominate the others in the clustering algorithm, which relies on distance metrics. To solve this, we standardize our features using sklearn's `StandardScaler`. This subtracts the mean and scales the data to unit variance.
+
+### Clustering Algorithm
+
+- With properly standardized data, we use the K-means clustering algorithm from sklearn to cluster the dataset. K-means is a widely-used method in cluster analysis. It partitions n observations into k clusters, where each observation belongs to the cluster with the nearest mean. We choose k=4, representing the number of clusters we want to partition our data into. The choice of k depends on the data and should be chosen after careful consideration. We then fit and predict our standardized data using the K-means model to get our labels.
+
+### Adding Cluster Labels to DataFrame
+
+- Once we obtain our cluster labels, we add them to our original DataFrame as a new column named 'cluster'.
+
+
+## Model Selection, Training, and Validation
+
+### Model Description
+
+- Employed a Decision Tree Classifier model from the sklearn library. A decision tree is a flowchart-like tree structure where an internal node represents feature (or attribute), the branch represents a decision rule, and each leaf node represents the outcome.
+
+- Desicion Trees suit our use case due to its interpretability and effectiveness with categorical features. The target variable, `cluster`, is a categorical variable that we're trying to predict based on several other features in our dataset.
+
+### Model Selection Process
+
+- The selection process for this model was based on the types of data and the problems we were trying to solve. Decision Tree's serve as excellent models for classification problems. THe Decision Tree Model accomodates the projects need to understand and visuaalize data which make it a number once chioice due to interpretability.
+
+### Model Training and Validation
+
+- Modeling was straightforward, we separated our dataset into features (`X`) and the target variable (`y`). The features considered are, 'quantity', 'unit_cost', 'unit_price', 'cost', 'revenue'. The target variable is the 'cluster'.
+
+- We then split the data into training, validation, and testing sets using sklearn's `train_test_split` function, with xx% of the data going to the training set, xx% to the validation setr, and xx% to the test set.
+
+- We used training data to train our Decision Tree Classifier, fitted the model to our training data using the `fit` method, which is a part of the sklearn library's API.
+
+- After model training, we validated the model performance by making it predict the `cluster` for our test data. We then compare these predictions to the actual labels using a classification report, which provides an in-depth analysis of the model's performance, including precision, recall, f1-score, and support for each class, and accuracy of the model.
+
+- In this implementation, we have not used hyperparameter tuning or cross-validation. However, in a more complex setup, these could be valuable tools to optimize model performance. 
 
 <!-- ![Model Performance Comparison](path/to/model_performance_image.png) -->
 
@@ -148,9 +182,9 @@ The data will be downloaded from Kaggle and stored on our local devices.
 
 - Summarize the project results, including the best-performing model, its performance metrics, and any insights derived from the analysis.
 
-## Future Work
+## Future Work/Next Steps:
 
-- Discuss potential improvements, additional features, or alternative approaches for the project.
+- Employ GridSearchCV for hyperparameter tuning, which would involve training the model multiple times with different combinations of hyperparameters to find the best performing set. 
 
 ## Acknowledgements
 
