@@ -221,7 +221,9 @@ def scale_data(train,
 # # k_means_clustering(df)
 
 def k_means_clustering(k):
-    
+    '''
+    Please enter as k = n, n being the number of clusters used in the function.
+    '''
     df, train, validate, test = wrangle_data()
 
 
