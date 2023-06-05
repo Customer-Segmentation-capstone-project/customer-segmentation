@@ -90,16 +90,7 @@ def prepare_data(df):
     df.revenue = round(df.revenue, 2)
     
     # set date to datetime dtype
-    #df.date = pd.to_datetime(df.date)
-
-    # drop the date column
-    df.drop('date', axis=1, inplace=True)
-
-    # Generate unique record IDs
-    record_ids = np.random.choice(range(1020, 50867), size=len(df), replace=False)
-
-    # Add 'record_id' column to df
-    df['record_id'] = record_ids
+    df.date = pd.to_datetime(df.date)
     
     # create new column for total price of sale
     df['profit'] = df.revenue - df.cost
@@ -274,39 +265,6 @@ def k_means_clustering(k):
     
     # returns df with target column
     return df
-<<<<<<< HEAD
-
-def perform_clustering(df):
-
-    # Encode categorical columns
-    le = LabelEncoder()
-    df['customer_gender'] = le.fit_transform(df['customer_gender'])
-    df['country'] = le.fit_transform(df['country'])
-    df['state'] = le.fit_transform(df['state'])
-    df['product_category'] = le.fit_transform(df['product_category'])
-    df['sub_category'] = le.fit_transform(df['sub_category'])
-    df['month'] = le.fit_transform(df['month'])
-
-    # Standardize data
-    #df = (df - df.mean()) / df.std()
-
-    # Feature Selection
-    data = df[['customer_age', 'sub_category', 'cost']]  # Select relevant columns
-
-    # Standardization
-    scaler = StandardScaler()
-    X = scaler.fit_transform(data)
-
-    # Clustering Algorithm (K-means)
-    k = 5  # Number of clusters
-    kmeans = KMeans(n_clusters=k)
-    labels = kmeans.fit_predict(X)
-
-    # Add 'cluster' column to the DataFrame
-    df['cluster'] = labels
-
-    return df
-=======
     
 def split_data(df, random_seed=4233):
     '''
@@ -357,4 +315,3 @@ def clean_split_df(df):
                                        stratify=train_val['clusters'])
 
     return train, validate, test
->>>>>>> 3a12137c97398c95caa3249fd3da36070501a424
