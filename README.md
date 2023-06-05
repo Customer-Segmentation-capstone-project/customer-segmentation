@@ -156,4 +156,4 @@ The data will be downloaded from Kaggle and stored on our local devices.
 
 - List any references, articles, or resources used during the project.
 - Acknowledge any collaborators or external support, if applicable.
-
+https://www.canva.com/design/DAFkl7WSndQ/LvgJcc-wH_v0ry8fTSGzSA/edit
