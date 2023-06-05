@@ -50,26 +50,29 @@ Our approach involves applying recommendation systems to the vast product catalo
 
 ## Data dictionary
 
-Column Name	Description
-Year	The year in which the sales were recorded.
-Month	The month in which the sales were recorded.
-Customer ID	A unique identifier for each customer.
-Customer Name	The name of the customer.
-Product ID	A unique identifier for each product.
-Product Name	The name of the product.
-Quantity	The quantity of the product sold.
-Revenue	The revenue generated from the sales of the product.
-Cost	The cost associated with the product.
-Profit	The profit obtained from the sales of the product.
-Country	The country where the sales occurred.
-State	The state where the sales occurred.
-City	The city where the sales occurred.
-Region	The region where the sales occurred.
-Order Date	The date when the order was placed.
-Ship Date	The date when the product was shipped.
-Ship Mode	The mode of shipment for the product.
-Segment	The market segment to which the customer belongs.
-Ship Priority	The priority of the shipment.
+| Column Name               | Description                                              |
+| ------------------------- | -------------------------------------------------------- |
+| year                      | The year in which the sales were recorded.               |
+| month                     | The month in which the sales were recorded.              |
+| customer_age              | The age of the customer.                                 |
+| customer_gender           | The gender of the customer.                              |
+| country                   | The country where the sales occurred.                    |
+| state                     | The state where the sales occurred.                      |
+| product_category          | The category of the product.                             |
+| sub_category              | The sub-category of the product.                         |
+| quantity                  | The quantity of the product sold.                        |
+| unit_cost                 | The cost per unit of the product.                        |
+| ...                       | ...                                                      |
+| sub_category_Shorts       | Binary indicator (0 or 1) for the sub-category "Shorts". |
+| sub_category_Socks        | Binary indicator (0 or 1) for the sub-category "Socks".  |
+| sub_category_Tires        | Binary indicator (0 or 1) for the sub-category "Tires".  |
+| sub_category_Touring Bikes| Binary indicator (0 or 1) for the sub-category "Touring Bikes".|
+| sub_category_Vests        | Binary indicator (0 or 1) for the sub-category "Vests".  |
+| customer_gender_M         | Binary indicator (0 or 1) for male customers.            |
+| country_Germany           | Binary indicator (0 or 1) for sales in Germany.          |
+| country_United Kingdom    | Binary indicator (0 or 1) for sales in the United Kingdom. |
+| country_United States     | Binary indicator (0 or 1) for sales in the United States.|
+| product_category_encoded  | Numeric encoding for the product category.               |
 
 
 ## Setup
