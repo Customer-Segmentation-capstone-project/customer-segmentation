@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 from scipy import stats
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # ========================================================================
 
@@ -12,6 +14,32 @@ def check_hypothesis(p_val, test_stat, α=0.05):
     else:
         print('\033[31m========== ACCEPT THE NULL HYPOTHESIS! ==========\033[0m')
         print(f'\033[35mP-Value:\033[0m {p_val:.8f}')
+
+# ========================================================================
+
+def show_plot_1(train_clus):
+    """
+    Plot the mean revenue for each cluster.
+
+    Parameters:
+        train_clus (pandas.DataFrame): DataFrame with the clustered data.
+        label (numpy.array): Cluster labels.
+
+    Returns:
+        None
+    """
+    # create barplot
+    sns.barplot(x=train_clus['clusters'], y=train_clus['revenue'], estimator=np.mean)
+    # add axis labels
+    plt.xlabel('Cluster', size = 16)
+    plt.ylabel('Mean Revenue (Dollars)', size=16)
+    # add title
+    plt.title('Customers in Cluster 3 Produce\nThe Highest Revenue', size=17)
+    # resize ticks
+    plt.xticks(size=13)
+    plt.yticks(size=13)
+    # display plot
+    plt.show()
 
 # ========================================================================
 
@@ -32,6 +60,45 @@ def get_test_1(train_clus):
 
 # ========================================================================
 
+def get_avg_cluster_revenue(train_clus):
+    print(f'cluster 0 average revenue is: \
+{round(train_clus[train_clus.clusters == 0].revenue.mean(),2)}')
+    print(f'cluster 1 average revenue is: \
+{round(train_clus[train_clus.clusters == 1].revenue.mean(),2)}')
+    print(f'cluster 2 average revenue is: \
+{round(train_clus[train_clus.clusters == 2].revenue.mean(),2)}')
+    print(f'cluster 3 average revenue is: \
+{round(train_clus[train_clus.clusters == 3].revenue.mean(),2)}')
+
+# ========================================================================
+
+def show_plot_2(train_clus):
+    """
+    Create a bar plot to compare cluster ages.
+
+    Parameters:
+        train_clus (pandas.Series): clustered training dataset.
+
+    Returns:
+        None
+    """
+    # create barplot of mean age by cluster
+    sns.barplot(x=train_clus['clusters'], 
+                y=train_clus['customer_age'], 
+                estimator=np.mean)
+    # add axis labels
+    plt.xlabel('Cluster', size=17)
+    plt.ylabel('Mean Age of Customers', size=17)
+    # add titles
+    plt.title('Customers in Cluster 1 Have The\n Highest Average Age', size=18)
+    # change tick size
+    plt.xticks(size=13)
+    plt.yticks(size=13)
+    # display plot
+    plt.show()
+
+# ========================================================================
+
 def get_test_2(train_clus):
     '''
     This will run an ANOVA test to see if the mean of customer_age is different
@@ -47,6 +114,50 @@ def get_test_2(train_clus):
                           clus_2.customer_age, clus_3.customer_age)
     # display the results of the hypothesis test
     check_hypothesis(p, f)
+
+# ========================================================================
+
+def get_avg_cluster_age(train_clus):
+    print(f'cluster 0 average customer_age is: \
+{round(train_clus[train_clus.clusters == 0].customer_age.mean(),1)}')
+    print(f'cluster 1 average customer_age is: \
+{round(train_clus[train_clus.clusters == 1].customer_age.mean(),1)}')
+    print(f'cluster 2 average customer_age is: \
+{round(train_clus[train_clus.clusters == 2].customer_age.mean(),1)}')
+    print(f'cluster 3 average customer_age is: \
+{round(train_clus[train_clus.clusters == 3].customer_age.mean(),1)}')
+
+# ========================================================================
+
+def show_plot_3(train_clus):
+    """
+    Create a visualization of sub-categories
+
+    Parameters:
+        train_clus (pandas.DataFrame): Input DataFrame.
+
+    Returns:
+        None
+    """
+    # sort the median customer_age for each sub_category
+    meds = train_clus.groupby('sub_category').median().\
+        sort_values('customer_age', ascending=False).index.to_list()
+    # set figure size
+    plt.figure(figsize=(10, 6))
+    # create a boxplot
+    sns.boxplot(x=train_clus['sub_category'], 
+                y=train_clus['customer_age'], 
+                order=meds)
+    # change axis labels
+    plt.xlabel('Sub-Category', size=16)
+    plt.ylabel('Age', size=16)
+    # set tick size
+    plt.xticks(rotation=90, size=13)
+    plt.yticks(size=13)
+    # add title
+    plt.title('Age Is Fairly Evenly Distribute Across Sub-Categories', size=18)
+    # display plot
+    plt.show()
 
 # ========================================================================
 
@@ -81,6 +192,33 @@ def get_test_3(train_clus):
 
 # ========================================================================
 
+def show_plot_4(train_clus):
+    """
+    Create a visualization of sub-categories by gender.
+
+    Parameters:
+        train_clus (pandas.DataFrame): Input DataFrame.
+
+    Returns:
+        None
+    """
+    # group by sub-category and gender
+    subcategory_gender = train_clus.groupby(
+        ['sub_category', 'customer_gender']).size().unstack()
+    # create plot
+    subcategory_gender.plot(kind='bar', stacked=False)
+    # add axis labels
+    plt.xlabel('Sub-Category', size=16)
+    plt.ylabel('Count', size=16)
+    # add title
+    plt.title('Sub-Category is Evenly Distributed by Gender', size=17)
+    # show legend
+    plt.legend(title='Gender')
+    # display plot
+    plt.show()
+
+# ========================================================================    
+    
 def get_test_4(train_clus):
     '''
     This will run a chi-squared test to see if the sub_category of item purchased
@@ -110,6 +248,41 @@ def get_test_4(train_clus):
 
 # ========================================================================
 
+def show_plot_5(df):
+    """
+    Create a visualization of sub-categories: 
+    Mountain Bikes, Road Bikes, and Touring Bikes by age.
+
+    Parameters:
+        df (pandas.DataFrame): Input DataFrame.
+
+    Returns:
+        None
+    """
+    # get a subset of the data containing only bike purchases
+    subcategory_age = df[df['sub_category'].\
+                         isin(['Mountain Bikes', 'Road Bikes', 'Touring Bikes'])]
+    # sort the median customer_age for each sub_category
+    meds = subcategory_age.groupby('sub_category').median().\
+        sort_values('customer_age', ascending=False).index.to_list()
+    # create boxplot
+    sns.boxplot(x=subcategory_age['sub_category'], 
+                y=subcategory_age['customer_age'],
+                order=meds)
+    # set axis labels
+    plt.xlabel('Bike Type Purchased', size=16)
+    plt.ylabel('Age of Customer', size=16)
+    # create title
+    plt.title('There is a Slight Difference In Age\n Distribution by Bike Type Purchased',
+             size=17)
+    # change tick size
+    plt.xticks(size=13)
+    plt.yticks(size=13)
+    # display the plot
+    plt.show()
+
+# ========================================================================
+
 def get_test_5(train_clus):
     '''
     This will run an ANOVA test to see if customer_age is different amongst customers
@@ -122,6 +295,39 @@ def get_test_5(train_clus):
         train_clus[train_clus.sub_category == 'Touring Bikes'].customer_age)
     # display the results of the hypothesis test
     check_hypothesis(p, f)
+
+# ========================================================================
+def show_plot_6(df):
+    """
+    Create a visualization of sub-categories: Mountain Bikes, Road Bikes, 
+    and Touring Bikes by gender.
+
+    Parameters:
+        df (pandas.DataFrame): Input DataFrame.
+
+    Returns:
+        None
+    """
+    # get a subset of the data containing only bike purchases
+    subcategory_gender = df[df['sub_category'].\
+                            isin(['Mountain Bikes', 'Road Bikes', 'Touring Bikes'])]
+    # groupby category and gender
+    subcategory_gender = subcategory_gender.\
+        groupby(['sub_category', 'customer_gender']).size().unstack()
+    # create a plot
+    subcategory_gender.plot(kind='bar', stacked=False)
+    # change axis labels
+    plt.xlabel('Type of Bike Purchased', size=16)
+    plt.ylabel('Purchase Count', size=16)
+    # add title
+    plt.title('Type of Bike Purchased is\n Evenly Distributed By Gender', size=17)
+    # show legend
+    plt.legend(title='Gender')
+    # change tick size
+    plt.xticks(rotation=45, size=13)
+    plt.yticks(size=13)
+    # display the plot
+    plt.show()
 
 # ========================================================================
 
@@ -152,6 +358,40 @@ def get_test_6(train_clus):
     chi2, p, dof, hypothetical = stats.chi2_contingency(gender_bike)
     # display the results of the hypothesis test
     check_hypothesis(p, chi2)
+
+# ========================================================================
+
+def show_plot_7(df):
+    """
+    Create a visualization of sub-categories: Mountain Bikes, Road Bikes, and Touring Bikes by location.
+
+    Parameters:
+        df (pandas.DataFrame): Input DataFrame.
+
+    Returns:
+        None
+    """
+    # create subgroup with only bike purchases
+    subcategory_location = df[df['sub_category'].\
+                              isin(['Mountain Bikes', 'Road Bikes', 'Touring Bikes'])]
+    # group data by sub_category and country
+    subcategory_location = subcategory_location.\
+        groupby(['sub_category', 'country']).size().unstack()
+    # create barplot
+    subcategory_location.plot(kind='bar', stacked=False)
+    # add axis labels
+    plt.xlabel('Type of Bike Purchased', size=16)
+    plt.ylabel('Purchase Count', size=16)
+    # add title
+    plt.title('There Were More Bikes Purchased In\n United States Than Other Countries',
+             size=17)
+    # show legend
+    plt.legend(title='Country')
+    # change tick size
+    plt.xticks(rotation=45, size=13)
+    plt.yticks(size=13)
+    # display the plot
+    plt.show()
 
 # ========================================================================
 
@@ -198,6 +438,36 @@ def get_test_7(train_clus):
     chi2, p, dof, hypothetical = stats.chi2_contingency(country_bike)
     # display hypothesis test results
     check_hypothesis(p, chi2)
+
+# ========================================================================
+
+def show_plot_8(train_clus):
+    # create a list of the country total populations as of 2023
+    pop_totals = [65_690_000, 83_310_000, 67_620_000, 334_230_000]
+    # create a dataframe of orders by country
+    purchase_prop = pd.DataFrame(train_clus.groupby('country').
+             date.count()).rename(columns={'date':'orders'}).reset_index()
+    # create a column with the total populations
+    purchase_prop = pd.concat([purchase_prop, pd.Series(pop_totals)], axis=1).\
+                    rename(columns={0:'population'})
+    # create a column with the proportion of orders to population
+    purchase_prop['proportion'] = purchase_prop.orders / purchase_prop.population
+    # sort the values by proportion
+    purchase_prop = purchase_prop.sort_values('proportion', ascending=False)
+    
+    # create the plot
+    sns.barplot(x=purchase_prop.country, y=purchase_prop.proportion)
+    # add title
+    plt.title('United Kingdom Has The Highest Purchase Rate\n\
+    Relative to Total Country Population', size=17)
+    # add axis labels
+    plt.xlabel('Country', size=16)
+    plt.ylabel('Order Proportion to Total Population', size=15)
+    # change tick size
+    plt.xticks(rotation=45, size=13)
+    plt.yticks(size=13)
+    # display tthe plot
+    plt.show()
 
 # ========================================================================
 
