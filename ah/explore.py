@@ -344,10 +344,10 @@ def get_test_6(train_clus):
     female=[]
     # cycle through the list of bike types to get a count of purchases by gender
     for i in range(len(bike_list)):
-        male.append(train_clus[(train_clus.customer_gender_M == 1) & 
+        male.append(train_clus[(train_clus.customer_gender == 'M') & 
                                (train_clus.sub_category == bike_list[i])].\
                                 sub_category.count())
-        female.append(train_clus[(train_clus.customer_gender_M == 0) & 
+        female.append(train_clus[(train_clus.customer_gender == 'F') & 
                                (train_clus.sub_category == bike_list[i])].\
                                 sub_category.count())
     # combine male and female results into one df
