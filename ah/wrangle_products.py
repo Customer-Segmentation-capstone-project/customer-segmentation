@@ -47,6 +47,7 @@ def basic_clean(original_string):
     This will take in a string, make it all lowercase, normalize the characters to ascii
     and remove characters that are not letters, numbers or spaces
     '''
+    original_string = original_string.replace('|',' ').replace('/', ' ')
     # normalize the characters to ascii standart
     normalized = unicodedata.normalize('NFKD', original_string).\
         encode('ascii', 'ignore').decode('utf-8')
@@ -186,6 +187,8 @@ def prepare_amazon(df, extra_words=None, exclude_words=None):
     # rename columns to avoid confustion
     cleaned = cleaned.rename(columns={'main_category':'amazon_main_cat',
                                       'sub_category': 'amazon_sub_cat'})
+    # reset the index after dropping null rows
+    cleaned = cleaned.reset_index().drop(columns='index')
     
     # return the cleaned dataframe
     return cleaned
