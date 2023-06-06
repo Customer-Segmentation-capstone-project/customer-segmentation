@@ -61,26 +61,53 @@ def most_buying_power(label, revenue):
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def popular_subcategory_purchases(label, clustered_df):
+def popular_subcategory_purchases(label, train):
     """
     Visualize the popular subcategory purchases for each cluster.
 
     Parameters:
         label (numpy.array): Cluster labels.
-        clustered_df (pandas.DataFrame): DataFrame with cluster information.
+        train (pandas.DataFrame): DataFrame with cluster information.
 
     Returns:
         None
     """
-    sns.countplot(x='sub_category', hue=label, data=clustered_df)
-    plt.xlabel('Subcategory')
-    plt.ylabel('Count')
+    sns.countplot(y='sub_category', hue=label, data=train)  # horizontal
+    plt.ylabel('Subcategory')
+    plt.xlabel('Count')
     plt.title('Cluster Visualization of Subcategory Purchases')
-    plt.legend(title='Cluster')
+    plt.legend(title='Cluster', loc='lower right')  # leagend lower right for horizontal chart
     plt.show()
-    
-# popular_subcategory_purchases(label, clustered_df)
 
+    
+# popular_subcategory_purchases(label, train)
+
+def top_five_popular_subcategory_purchases(label, train):
+    """
+    Visualize the popular subcategory purchases for each cluster.
+
+    Parameters:
+        label (numpy.array): Cluster labels.
+        train (pandas.DataFrame): DataFrame with cluster information.
+
+    Returns:
+        None
+    """
+    # Calculate the counts for each subcategory
+    subcategory_counts = train['sub_category'].value_counts()
+
+    # Get the top 5 subcategories
+    top_subcategories = subcategory_counts[:5].index
+
+    # Filter the train DataFrame to only include the top 5 subcategories
+    train_top_subcategories = train[train['sub_category'].isin(top_subcategories)]
+
+    sns.countplot(y='sub_category', hue=label, data=train_top_subcategories)  # horizontal
+    plt.ylabel('Subcategory')
+    plt.xlabel('Count')
+    plt.title('Cluster Visualization of Top 5 Subcategory Purchases')
+    plt.legend(title='Cluster', loc='lower right')  # legend lower right for horizontal chart
+    plt.show()
 
 # In[ ]:
 
@@ -176,12 +203,15 @@ def visualize_category_revenue(df):
     """
     category_revenue = df.groupby('sub_category')['revenue'].sum()
 
-
     sns.barplot(x=category_revenue.index, y=category_revenue.values)
     plt.xlabel('Sub Category')
     plt.ylabel('Revenue')
     plt.title('Total Revenue by Product Sub-Category')
+
+    # Rotate x-labels 90 degrees
+    plt.xticks(rotation=90)
     plt.show()
+
     
 # visualize_category_revenue(df)
 
@@ -250,7 +280,10 @@ def visualize_subcategory_country(df):
     plt.xlabel('Country')
     plt.ylabel('Revenue')
     plt.title('Sub-Category Revenue by Country')
-    plt.legend(title='Sub-Category')
+    
+    # Display legend outside the chart
+    plt.legend(title='Sub-Category', bbox_to_anchor=(1.01, 1), loc='upper left')
+    
     plt.show()
 
 # visualize_subcategory_country(df)

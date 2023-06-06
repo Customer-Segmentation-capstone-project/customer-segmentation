@@ -77,6 +77,30 @@ Link to 2:  https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset 
 | 13. cost | total prie the store paid for the quantity of item purchased in transaction(float)   |
 | 14. revenue | total revenue accrued for the quantity  of items purchaseed in transaction (Float)  |
 
+
+## Clustered Data Dictionary
+
+| Sub Category        | Encoded |
+|---------------------|---------|
+| Bike Racks          | 0       |
+| Bike Stands         | 1       |
+| Bottles and Cages   | 2       |
+| Caps                | 3       |
+| Cleaners            | 4       |
+| Fenders             | 5       |
+| Gloves              | 6       |
+| Helmets             | 7       |
+| Hydration Packs     | 8       |
+| Jerseys             | 9       |
+| Mountain Bikes      | 10      |
+| Road Bikes          | 11      |
+| Shorts              | 12      |
+| Socks               | 13      |
+| Tires and Tubes     | 14      |
+| Touring Bikes       | 15      |
+| Vests               | 16      |
+
+
 <<<<<<< HEAD
 | Column Name               | Description                                              |
 | ------------------------- | -------------------------------------------------------- |
