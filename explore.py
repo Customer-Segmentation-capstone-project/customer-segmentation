@@ -232,10 +232,10 @@ def get_test_4(train_clus):
     female=[]
     # cycle through the categories to get a count of items purchased by category
     for i in range(len(cat_list)):
-        male.append(train_clus[(train_clus.customer_gender_M == 1) & 
+        male.append(train_clus[(train_clus.customer_gender == 'M') & 
                                (train_clus.sub_category == cat_list[i])].\
                                 sub_category.count())
-        female.append(train_clus[(train_clus.customer_gender_M == 0) & 
+        female.append(train_clus[(train_clus.customer_gender == 'F') & 
                                (train_clus.sub_category == cat_list[i])].\
                                 sub_category.count())
     # combine the male and female info into one df

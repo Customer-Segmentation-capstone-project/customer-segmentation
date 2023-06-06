@@ -1,24 +1,19 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
 import numpy as np
+import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-def plot_mean_revenue(clustered_df, label):
+def show_plot_1(clustered_df):
     """
     Plot the mean revenue for each cluster.
 
     Parameters:
         clustered_df (pandas.DataFrame): DataFrame with the clustered data.
-        label (numpy.array): Cluster labels.
 
     Returns:
         None
     """
-    sns.barplot(x=label, y=clustered_df['revenue'], estimator=np.mean)
+    sns.barplot(x=clustered_df['clusters'], y=clustered_df['revenue'], estimator=np.mean)
     plt.xlabel('Cluster')
     plt.ylabel('Mean Revenue')
     plt.title('Mean Revenue for Each Cluster')
