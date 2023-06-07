@@ -256,12 +256,12 @@ def k_means_clustering(k):
     for cluster in range(k):
         cluster_data = df_clustering[labels == cluster]
         cluster_mean = cluster_data.mean()
-        print(f"Cluster {cluster + 1} Mean:")
-        print(cluster_mean)
-        print()
+        #print(f"Cluster {cluster + 1} Mean:")
+        #print(cluster_mean)
+        #print()
     # Print silhouette_score for clusters     
     s_score = silhouette_score(X,labels)
-    print(f"Silhouette Score: {s_score:.3f}")
+    # print(f"Silhouette Score: {s_score:.3f}")
 
     df['clusters'] = labels
     
