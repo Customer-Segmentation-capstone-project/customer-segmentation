@@ -10,9 +10,9 @@ import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import wrangle as w
 
-train, validate, test = w.split_data(w.k_means_clustering(k=4))
+# train, validate, test = w.split_data(w.k_means_clustering(k=4))
 
-def get_modeling_feats_and_target():
+def get_modeling_feats_and_target(train, validate, test):
     """
     Perform classification on the given dataset using a decision tree classifier.
 
@@ -34,7 +34,7 @@ def get_modeling_feats_and_target():
        'country_United Kingdom', 'country_United States',
        'product_category_encoded']
     
-    train, validate, test = w.split_data(w.k_means_clustering(k=4))
+    # train, validate, test = w.split_data(w.k_means_clustering(k=4))
     
     X_train = train[X_cols]
     X_validate = validate[X_cols]
@@ -45,7 +45,7 @@ def get_modeling_feats_and_target():
     
     return X_train, y_train, X_validate, y_validate, X_test, y_test
 
-X_train, y_train, X_validate, y_validate, X_test, y_test = get_modeling_feats_and_target()
+# X_train, y_train, X_validate, y_validate, X_test, y_test = get_modeling_feats_and_target()
 
 def evaluate_decision_tree(max_depth_range, X_train, y_train, X_validate, y_validate):
     results = []
@@ -141,7 +141,7 @@ def evaluate_random_forest(X_train, y_train, X_validate, y_validate):
     
     return rf_evaluation_df
 
-def find_rf_best_model_by_recall_difference():
+def find_rf_best_model_by_recall_difference(X_train, y_train, X_validate, y_validate):
 
     #Bring in Random Forest evaluation df
     rf_evaluation_df = evaluate_random_forest(X_train, y_train, X_validate, y_validate)
@@ -164,7 +164,7 @@ def find_rf_best_model_by_recall_difference():
     
     return rf_best_model, best_model_row
 
-def find_dt_best_model_by_recall_difference(max_depth_range):
+def find_dt_best_model_by_recall_difference(max_depth_range, X_train, y_train, X_validate, y_validate):
 
     # Bring in evaluation df for Decision Tree models
     dt_evaluation_df = evaluate_decision_tree(max_depth_range, X_train, y_train, X_validate, y_validate)
@@ -186,7 +186,7 @@ def find_dt_best_model_by_recall_difference(max_depth_range):
     
     return dt_best_model, best_model_row
 
-def test_decision_tree(max_depth):
+def test_decision_tree(max_depth, X_train, y_train, X_test, y_test):
     # Create a decision tree classifier with the specified max_depth
     clf = DecisionTreeClassifier(max_depth=max_depth)
     
@@ -227,7 +227,7 @@ def test_decision_tree(max_depth):
     
     return test_eval_df
 
-def find_baseline_and_eval_df():
+def find_baseline_and_eval_df(train):
 
     value_counts = train.clusters.value_counts()
 
