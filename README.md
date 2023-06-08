@@ -100,32 +100,6 @@ Link to 2:  https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset 
 | Touring Bikes       | 15      |
 | Vests               | 16      |
 
-
-<<<<<<< HEAD
-| Column Name               | Description                                              |
-| ------------------------- | -------------------------------------------------------- |
-| year                      | The year in which the sales were recorded.               |
-| month                     | The month in which the sales were recorded.              |
-| customer_age              | The age of the customer.                                 |
-| customer_gender           | The gender of the customer.                              |
-| country                   | The country where the sales occurred.                    |
-| state                     | The state where the sales occurred.                      |
-| product_category          | The category of the product.                             |
-| sub_category              | The sub-category of the product.                         |
-| quantity                  | The quantity of the product sold.                        |
-| unit_cost                 | The cost per unit of the product.                        |
-| ...                       | ...                                                      |
-| sub_category_Shorts       | Binary indicator (0 or 1) for the sub-category "Shorts". |
-| sub_category_Socks        | Binary indicator (0 or 1) for the sub-category "Socks".  |
-| sub_category_Tires        | Binary indicator (0 or 1) for the sub-category "Tires".  |
-| sub_category_Touring Bikes| Binary indicator (0 or 1) for the sub-category "Touring Bikes".|
-| sub_category_Vests        | Binary indicator (0 or 1) for the sub-category "Vests".  |
-| customer_gender_M         | Binary indicator (0 or 1) for male customers.            |
-| country_Germany           | Binary indicator (0 or 1) for sales in Germany.          |
-| country_United Kingdom    | Binary indicator (0 or 1) for sales in the United Kingdom. |
-| country_United States     | Binary indicator (0 or 1) for sales in the United States.|
-| product_category_encoded  | Numeric encoding for the product category.               |
-
 =======
    Dataset 2: Amazon Cycling Product Data
 | **Object Returned** | **Description** |
@@ -145,6 +119,8 @@ Link to 2:  https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset 
 
 To download the dataset, you will need an account for [Kaggle.com](https://www.kaggle.com).
 
+- Installs needed to run this notebook:
+    - python -m pip install --upgrade wordcloud
 - Gives instructions for reproducing your work. i.e. Running your notebook on someone else's computer.
 - List the required Python libraries and their versions.
 - Include instructions for setting up a virtual environment, if necessary.

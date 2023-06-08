@@ -5,7 +5,11 @@
 
 import numpy as np
 import seaborn as sns
+<<<<<<< HEAD
 import matplotlib.pyplot as plt
+=======
+from wordcloud import WordCloud
+>>>>>>> d5ff9c7b869a049c17176438b06bb9f37150b789
 
 def plot_mean_revenue(clustered_df, label):
     """
@@ -18,6 +22,7 @@ def plot_mean_revenue(clustered_df, label):
     Returns:
         None
     """
+<<<<<<< HEAD
     sns.barplot(x=label, y=clustered_df['revenue'], estimator=np.mean)
     plt.xlabel('Cluster')
     plt.ylabel('Mean Revenue')
@@ -44,6 +49,19 @@ def mean_revenue_viz(clustered_df, label):
     plt.ylabel('Mean Revenue')
     plt.title('Mean Revenue for Each Cluster')
     plt.xticks(range(len(cluster_labels)), cluster_labels)  # Set the x-axis tick labels to cluster labels
+=======
+    # create barplot
+    sns.barplot(x=train_clus['clusters'], y=train_clus['revenue'], estimator=np.mean)
+    # add axis labels
+    plt.xlabel('Cluster', size = 16)
+    plt.ylabel('Mean Revenue (Dollars)', size=16)
+    # add title
+    plt.title('Customers in Cluster 3 Produce\nThe Highest Average Revenue', size=17)
+    # resize ticks
+    plt.xticks(size=13)
+    plt.yticks(size=13)
+    # display plot
+>>>>>>> d5ff9c7b869a049c17176438b06bb9f37150b789
     plt.show()
 
 
@@ -80,6 +98,7 @@ def most_buying_power(label, revenue):
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+<<<<<<< HEAD
 def popular_subcategory_purchases(label, train):
     """
     Visualize the popular subcategory purchases for each cluster.
@@ -135,6 +154,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 def ages_by_cluster(label, customer_age):
+=======
+def show_plot_2(train_clus):
+>>>>>>> d5ff9c7b869a049c17176438b06bb9f37150b789
     """
     Create a bar plot to compare cluster ages.
 
@@ -183,6 +205,7 @@ def visualize_relationships(df):
     Returns:
         None
     """
+<<<<<<< HEAD
     category_revenue = df.groupby('product_category')['revenue'].sum()
     gender_quantity = df.groupby('customer_gender')['sub_category'].sum()
     gender_age = df.groupby('customer_age')['customer_gender'].sum()
@@ -330,6 +353,12 @@ def visualize_category_profit(category_profit):
 
 
     # Create the bar plot
+=======
+    # sort the median customer_age for each sub_category
+    meds = train_clus.groupby('sub_category').median().\
+        sort_values('customer_age', ascending=False).index.to_list()
+    # set figure size
+>>>>>>> d5ff9c7b869a049c17176438b06bb9f37150b789
     plt.figure(figsize=(10, 6))
     category_profit.plot(kind='bar')
     plt.xlabel('Product Category')
@@ -458,6 +487,7 @@ def visualize_subcategory_age(df):
 
 # visualize_subcategory_age(df)
 
+<<<<<<< HEAD
 
 def visualize_category_revenue(df):
     """
@@ -465,10 +495,44 @@ def visualize_category_revenue(df):
 
     Parameters:
         df (pandas.DataFrame): Input DataFrame.
+=======
+def get_test_8(train_clus):
+    '''
+    This will run a kruskal wallis test to see if the proportion of orders to 
+    total population differs amongst countries in the dataset.
+    '''
+    # create a list of the country total populations as of 2023
+    pop_totals = [65_690_000, 83_310_000, 67_620_000, 334_230_000]
+    # create a dataframe of orders by country
+    purchase_prop = pd.DataFrame(train_clus.groupby('country').
+             date.count()).rename(columns={'date':'orders'}).reset_index()
+    # create a column with the total populations
+    purchase_prop = pd.concat([purchase_prop, pd.Series(pop_totals)], axis=1).\
+                    rename(columns={0:'population'})
+    # create a column with the proportion of orders to population
+    purchase_prop['proportion'] = purchase_prop.orders / purchase_prop.population
+    # run a kruskal wallis test
+    f, p = stats.kruskal(
+                     purchase_prop[purchase_prop.country == 'United Kingdom'].proportion,
+                     purchase_prop[purchase_prop.country == 'United States'].proportion,
+                     purchase_prop[purchase_prop.country == 'France'].proportion,
+                     purchase_prop[purchase_prop.country == 'Germany'].proportion)
+    # display the results of the test
+    check_hypothesis(p, f)
+
+def most_buying_power(train):
+    """
+    Visualize the cluster with the most buying power based on revenue.
+
+    Parameters:
+        label (numpy.array): Cluster labels.
+        revenue (pandas.Series): Revenue values.
+>>>>>>> d5ff9c7b869a049c17176438b06bb9f37150b789
 
     Returns:
         None
     """
+<<<<<<< HEAD
     category_revenue = df.groupby('sub_category')['revenue'].sum()
 
     # Selecting top five sub-categories based on revenue
@@ -563,4 +627,54 @@ def visualize_customer_spending(df):
     formatter = ticker.StrMethodFormatter('${x:,.0f}')
     plt.gca().yaxis.set_major_formatter(formatter)
 
+=======
+    sns.countplot(x=train['clusters'])
+    plt.xlabel('Cluster', size = 16)
+    plt.ylabel('Count of Transactions', size = 16)
+
+    plt.xticks(size=13)
+    plt.yticks(size=13)
+
+    plt.title('Distribution of Transaction Counts\nCluster 0 Most Transactions', size=17)
+    plt.show()
+
+def viz_age_dis_boxplot(train_clus):
+    
+    # create the plot
+    sns.boxplot(data=train_clus, x=train_clus['clusters'], y=train_clus['customer_age'])
+    # add title
+    plt.title('Age Distribution by Cluster', size=17)
+    # add axis labels
+    plt.xlabel('Cluster', size=16)
+    plt.ylabel('Age', size=15)
+    # change tick size
+    plt.xticks(size=13)
+    plt.yticks(size=13)
+    # display tthe plot
+    plt.show()
+
+def split_series_words(dataframe, series_name):
+    # Get the series from the DataFrame
+    series = dataframe[series_name]
+    
+    # Split the words in the series
+    words_list = series.str.split().tolist()
+    
+    # Flatten the list of lists into a single list
+    flattened_list = [word for sublist in words_list for word in sublist]
+    
+    # Convert the list into a new Series
+    new_series = pd.Series(flattened_list)
+    
+    return new_series
+
+def product_rec_wordcloud(cluster_words_series, cluster_name):
+
+    img = WordCloud(background_color='White', colormap='Set2'
+         ).generate(' '.join(cluster_words_series))
+    
+    plt.imshow(img)
+    plt.axis('off')
+    plt.title(f'Most Words for {cluster_name}')
+>>>>>>> d5ff9c7b869a049c17176438b06bb9f37150b789
     plt.show()
