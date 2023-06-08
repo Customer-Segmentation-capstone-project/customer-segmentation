@@ -119,6 +119,8 @@ Link to 2:  https://www.kaggle.com/datasets/lokeshparab/amazon-products-dataset 
 
 To download the dataset, you will need an account for [Kaggle.com](https://www.kaggle.com).
 
+- Installs needed to run this notebook:
+    - python -m pip install --upgrade wordcloud
 - Gives instructions for reproducing your work. i.e. Running your notebook on someone else's computer.
 - List the required Python libraries and their versions.
 - Include instructions for setting up a virtual environment, if necessary.
