@@ -3,6 +3,7 @@ import pandas as pd
 from scipy import stats
 import matplotlib.pyplot as plt
 import seaborn as sns
+from wordcloud import WordCloud
 
 # ========================================================================
 
@@ -529,4 +530,29 @@ def viz_age_dis_boxplot(train_clus):
     plt.xticks(size=13)
     plt.yticks(size=13)
     # display tthe plot
+    plt.show()
+
+def split_series_words(dataframe, series_name):
+    # Get the series from the DataFrame
+    series = dataframe[series_name]
+    
+    # Split the words in the series
+    words_list = series.str.split().tolist()
+    
+    # Flatten the list of lists into a single list
+    flattened_list = [word for sublist in words_list for word in sublist]
+    
+    # Convert the list into a new Series
+    new_series = pd.Series(flattened_list)
+    
+    return new_series
+
+def product_rec_wordcloud(cluster_words_series, cluster_name):
+
+    img = WordCloud(background_color='White', colormap='Set2'
+         ).generate(' '.join(cluster_words_series))
+    
+    plt.imshow(img)
+    plt.axis('off')
+    plt.title(f'Most Words for {cluster_name}')
     plt.show()
