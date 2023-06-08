@@ -304,6 +304,11 @@ def clean_split_df(df):
        'country_United Kingdom', 'country_United States',
        'product_category_encoded'})
 
+    df['cluster_labels'] = np.where(df.clusters == 0, 'Essential Cyclist',
+                                    np.where(df.clusters == 1, 'All-Rounder Cyclist',
+                                             np.where(df.clusters == 2, 'Sporty Cyclist',
+                                                      np.where(df.clusters == 3, 'Bike Enthusiast', ''))))
+
         # split our df into train_val and test:
     train_val, test = train_test_split(df, 
                                    train_size=0.8,
@@ -316,4 +321,4 @@ def clean_split_df(df):
                                        random_state=123,
                                        stratify=train_val['clusters'])
 
-    return train, validate, test
+    return df, train, validate, test
