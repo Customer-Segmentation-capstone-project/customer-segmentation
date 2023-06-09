@@ -1,0 +1,26 @@
+For our modelling we took a multi-stage approach to segmenting our customers.
+
+We started by identifying distinct clusters in our dataset by using the kmeans algorithm.
+
+in order to find the ideal number of clusters we used the elbow method, which seeks to minimize the variance within each cluster while also minimizing the number of clusters needed.
+
+We found that by using: customer_age, along with the revenue and sub_category of items purchased our ideal number of clusters was 4.
+
+We then used these 4 clusters as the target variable on a classification model.
+
+The best model that we found was a decision tree model which was able to predict the segment a customer would be in with an accuracy of over 98% on our test data.
+
+Next we fed this customer cluster information into a product recommendation system in order to generate a list of Amazon products that the customer might be interested in purchasing.
+
+
+
+
+Our recommmendation system works by first grouping our Amazon products dataset into 4 price ranges which correspond to the spending habits of our customer segments
+
+It then uses Natural Language Processing and regular expressions to match the product's name to the list of sub_categories sold by the bike shop from our first dataset.
+
+The recommender then selects products in sub categories that are most frequently purchased by each customer segment.
+
+The products are then ordered using a combination of the item's average review score multiplied by the number of reviews the product has received.
+
+Finally a list of products is presented based on the customer segment that was determined from our classification model.
