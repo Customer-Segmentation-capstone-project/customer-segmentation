@@ -522,5 +522,5 @@ def product_rec_wordcloud(cluster_words_series, cluster_name):
     
     plt.imshow(img)
     plt.axis('off')
-    plt.title(f'Most Words for {cluster_name}')
+    plt.title(f'Most Words for {cluster_name}', size=17)
     plt.show()
